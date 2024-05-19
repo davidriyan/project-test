@@ -1,6 +1,7 @@
-// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api
+// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, unnecessary_null_comparison, avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/features/dashboard/data/models/add_product_model.dart';
 import 'package:flutter_application_1/features/dashboard/presentation/bloc/dashboard_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +11,8 @@ class AddProductScreen extends StatefulWidget {
 }
 
 class _AddProductScreenState extends State<AddProductScreen> {
+  AddProductModel? addProductModel;
+
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _brandController = TextEditingController();
@@ -29,6 +32,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
               child: CircularProgressIndicator(),
             );
           } else if (state is ProductAdded) {
+            if (state.addProductModel != null) {
+              addProductModel = state.addProductModel;
+            }
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 backgroundColor: Colors.green,
@@ -36,6 +42,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
               ),
             );
             Navigator.pop(context);
+            print(addProductModel!.title);
+            print(addProductModel!.brand);
+            print(addProductModel!.category);
+            print(addProductModel!.thumbnail);
             setState(() {});
           } else if (state is ProductAddFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -96,12 +106,14 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      context.read<DashboardBloc>().add(LoadAddProduct(
-                            title: _titleController.text,
-                            brand: _brandController.text,
-                            category: _categoryController.text,
-                            thumbnail: _thumbnailController.text,
-                          ));
+                      context.read<DashboardBloc>().add(
+                            LoadAddProduct(
+                              title: _titleController.text,
+                              brand: _brandController.text,
+                              category: _categoryController.text,
+                              thumbnail: _thumbnailController.text,
+                            ),
+                          );
                     }
                   },
                   child: const Text('Tambah'),

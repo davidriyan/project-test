@@ -13,6 +13,8 @@ class ProductInitial extends ProductState {}
 
 class ProductLoading extends ProductState {}
 
+class ProductUpdateLoading extends ProductState {}
+
 class ProductLoaded extends ProductState {
   ProductLoaded({
     this.productDetailModel,
@@ -25,8 +27,30 @@ class ProductLoaded extends ProductState {
       ];
 }
 
+class ProductUpdateLoaded extends ProductState {
+  ProductUpdateLoaded({
+    this.productUpdateModel,
+  });
+  ProductUpdateModel? productUpdateModel;
+
+  @override
+  List<Object> get props => [
+        productUpdateModel!,
+      ];
+}
+
 class ProductFailure extends ProductState {
   ProductFailure(
+    this.error,
+  );
+
+  String error;
+  @override
+  List<Object> get props => [error];
+}
+
+class ProductUpdateFailure extends ProductState {
+  ProductUpdateFailure(
     this.error,
   );
 

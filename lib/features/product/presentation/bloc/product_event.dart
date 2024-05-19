@@ -16,3 +16,14 @@ class LoadProduct extends ProductEvent {
   @override
   List<Object> get props => [id];
 }
+
+class LoadUpdateProduct extends ProductEvent {
+  LoadUpdateProduct(
+      {required this.id, required this.title, required this.brand});
+
+  final int id;
+  final String title;
+  final String brand;
+  @override
+  List<Object> get props => [id, title, brand];
+}
