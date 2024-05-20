@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/dashboard/data/models/product_model.dart';
 import 'package:flutter_application_1/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:flutter_application_1/features/dashboard/presentation/pages/about_screen.dart';
 import 'package:flutter_application_1/features/dashboard/presentation/pages/dashboard_add_product_screen.dart';
 import 'package:flutter_application_1/features/product/presentation/pages/product_detail_screen.dart';
 import 'package:flutter_application_1/utils/colors.dart';
@@ -127,6 +128,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         );
                       },
                       icon: const Icon(Icons.add),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const AboutScreen();
+                            },
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.account_circle_rounded),
                     ),
                   ],
                 )

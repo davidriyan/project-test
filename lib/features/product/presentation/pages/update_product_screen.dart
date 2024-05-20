@@ -38,7 +38,7 @@ class _ProductUpdateScreenState extends State<ProductUpdateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Update Product'),
+        title: const Text('Update Produk'),
       ),
       body: BlocConsumer<ProductBloc, ProductState>(
         listener: (context, state) {
